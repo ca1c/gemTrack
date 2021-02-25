@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
+    </head>
+    <body>
+        <div id="app">
+            <h1>Gem Tracker</h1>
+            <p>Destroy three respawnable obstacles and consecutively enter the number of gems each obstacle gave you:</p>
+            <form class="pure-form">
+                <label>Obstacle 1:</label>
+                <input type="text" v-model="obs1">
+                <label>Obstacle 2:</lable>
+                <input type="text" v-model="obs2">
+                <label>Obstacle 3:</label>
+                <input type="text" v-model="obs3">
+                <h4>{{ nextGem }}</h4>
+            </form>
+            <button class="pure-button pure-button-primary" v-on:click="findNextGem" type="button">Submit</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="public/js/main.js"></script>
+        <script src="public/js/findThree.js"></script>
+    </body>
+</html>
