@@ -13,7 +13,7 @@ const app = new Vue({
         transitioning: false,
     },
     methods: {
-        findThree: function() {
+        findThree: function(three) {
             const sequence = [6, 0, 4, 5, 1, 3, 2, 0, 0, 5, 1, 0, 3, 4, 0, 0, 5, 0, 1, 0];
 
             for(let i = 0; i < sequence.length; i++) {
