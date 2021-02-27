@@ -9,6 +9,7 @@
         <div id="app" class="container" v-cloak>
             <h1 class="header">Gem Tracker</h1>
             <div id="init" v-if="sequenceNotSynced === true">
+                <p class="header">Find the number of gems you will get when you destroy a respawning obstacle in Clash of Clans.</p>
                 <h6 class="header">Destroy three respawnable obstacles and consecutively enter the number of gems each obstacle gave you:</h5>
                 <form class='pure-form'>
                     <div class="row mainForm">
@@ -29,6 +30,7 @@
                 </form>
             </div>
             <div v-else>
+                <p class="header">Press space when you destroy an obstacle to get the next gem count.</p>
                 <div class="obstacles">
                     <transition name="fade">
                         <img v-bind:src="'assets/' + src" v-if="img === 1">
@@ -45,6 +47,7 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-cookies@1.7.4/vue-cookies.js"></script>
         <script src="public/js/main.js"></script>
     </body>
 </html>

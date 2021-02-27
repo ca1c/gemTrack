@@ -44,23 +44,41 @@ const app = new Vue({
             let nextGem = this.findThree([parseInt(this.obs1), parseInt(this.obs2), parseInt(this.obs3)]);
             this.nextGem = nextGem[1];
             this.nextGemIndex = nextGem[0];
+
+            this.$cookies.set("nextGem", this.nextGem);
+            this.$cookies.set("nextGemIndex", this.nextGemIndex);
             console.log(this.obs1);
         },
         checkInputSeq: function() {
+            this.$cookies.set("obs1", this.obs1);
+            this.$cookies.set("obs2", this.obs2);
+            this.$cookies.set("obs3", this.obs3);
             if(this.obs1 !== "" && this.obs2 !== "" && this.obs3 !== "" && this.sequenceNotSynced === true) {
                 this.findNextGem();
                 this.sequenceNotSynced = false;
+                this.$cookies.set("sequenceNotSynced", this.sequenceNotSynced);
             }
         },
     },
     created: function(){
         let vm = this;
+
+        vm.obs1 = this.$cookies.isKey("obs1") ? this.$cookies.get("obs1") : "";
+        vm.obs2 = this.$cookies.isKey("obs2") ? this.$cookies.get("obs2") : "";
+        vm.obs3 = this.$cookies.isKey("obs3") ? this.$cookies.get("obs3") : "";
+        vm.sequenceNotSynced = this.$cookies.isKey("sequenceNotSynced") ? this.$cookies.get("sequenceNotSynced") : true;
+        vm.nextGem = this.$cookies.isKey("nextGem") ? this.$cookies.get("nextGem") : "";
+        vm.nextGemIndex = this.$cookies.isKey("nextGemIndex") ? this.$cookies.get("nextGemIndex") : "";
+
         window.addEventListener('keyup', function(e) {
             if(e.keyCode == 32) {
                 if(vm.sequenceNotSynced !== true && vm.transitioning !== true) {
                     vm.transitioning = true;
                     vm.nextGem = vm.nextGemIndex === 19 ? vm.sequence[0] : vm.sequence[vm.nextGemIndex + 1];
                     vm.nextGemIndex = vm.nextGemIndex === 19 ? 0 : vm.nextGemIndex + 1;
+
+                    vm.$cookies.set("nextGem", vm.nextGem);
+                    vm.$cookies.set("nextGemIndex", vm.nextGemIndex);
 
                     let srcs = ["bush", "mushroom", "tree1", "tree2", "tree3", "trunk_fallen", "trunk"];
 
