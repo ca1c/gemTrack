@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
+        <link rel="stylesheet" href="public/css/Skeleton-2.0.4/css/normalize.css">
+        <link rel="stylesheet" href="public/css/Skeleton-2.0.4/css/skeleton.css">
+        <link rel="stylesheet" href="public/css/main.css">
     </head>
     <body>
-        <div id="app">
-            <h1>Gem Tracker</h1>
-            <p>Destroy three respawnable obstacles and consecutively enter the number of gems each obstacle gave you:</p>
-            <form class="pure-form">
-                <label>Obstacle 1:</label>
-                <input type="text" v-model="obs1">
-                <label>Obstacle 2:</lable>
-                <input type="text" v-model="obs2">
-                <label>Obstacle 3:</label>
-                <input type="text" v-model="obs3">
-                <h4>{{ nextGem }}</h4>
-            </form>
-            <button class="pure-button pure-button-primary" v-on:click="findNextGem" type="button">Submit</button>
+        <div id="app" class="container">
+            <h1 class="header">Gem Tracker</h1>
+            <div id="init" v-if="sequenceNotSynced === true">
+                <h6 class="header">Destroy three respawnable obstacles and consecutively enter the number of gems each obstacle gave you:</h5>
+                <form class='pure-form'>
+                    <div class="row mainForm">
+                        <div class="three columns">
+                            <label>Obstacle 1:</label>
+                            <input type='text' v-model='obs1' v-on:keyup="checkInputSeq">
+                        </div>
+                        <div class="three columns">
+                            <label>Obstacle 2:</label>
+                            <input type='text' v-model='obs2' v-on:keyup="checkInputSeq">
+                        </div>
+                        <div class="three columns">
+                            <label>Obstacle 3:</label>
+                            <input type='text' v-model='obs3' v-on:keyup="checkInputSeq">
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            <div v-else>
+                <div class="obstacles">
+                    <transition name="fade">
+                        <img v-bind:src="'assets/' + src" v-if="img === 1">
+                    </transition>
+                    <transition name="fade">
+                        <img v-bind:src="'assets/' + src" v-if="img === 3">
+                    </transition>
+                </div>
+                <p class="header">Next Gem Count: </p>
+                <div id="afterInit">
+                    <img src="assets/gem.webp" class="gemimg" width="30.5" height="34">
+                    <h4 class="header">{{ nextGem }}</h4>
+                </div>
+            </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
         <script src="public/js/main.js"></script>
-        <script src="public/js/findThree.js"></script>
     </body>
 </html>
