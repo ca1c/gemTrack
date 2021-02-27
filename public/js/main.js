@@ -70,12 +70,19 @@ const app = new Vue({
         vm.nextGem = this.$cookies.isKey("nextGem") ? this.$cookies.get("nextGem") : "";
         vm.nextGemIndex = this.$cookies.isKey("nextGemIndex") ? this.$cookies.get("nextGemIndex") : "";
 
+        console.log(vm.obs1);
+        console.log(vm.obs2);
+        console.log(vm.obs3);
+        console.log(vm.sequenceNotSynced);
+        console.log(vm.nextGem);
+        console.log(vm.nextGemIndex);
+
         window.addEventListener('keyup', function(e) {
             if(e.keyCode == 32) {
                 if(vm.sequenceNotSynced !== true && vm.transitioning !== true) {
                     vm.transitioning = true;
-                    vm.nextGem = vm.nextGemIndex === 19 ? vm.sequence[0] : vm.sequence[vm.nextGemIndex + 1];
-                    vm.nextGemIndex = vm.nextGemIndex === 19 ? 0 : vm.nextGemIndex + 1;
+                    vm.nextGem = parseInt(vm.nextGemIndex) === 19 ? vm.sequence[0] : vm.sequence[parseInt(vm.nextGemIndex) + 1];
+                    vm.nextGemIndex = parseInt(vm.nextGemIndex) === 19 ? 0 : parseInt(vm.nextGemIndex) + 1;
 
                     vm.$cookies.set("nextGem", vm.nextGem);
                     vm.$cookies.set("nextGemIndex", vm.nextGemIndex);
