@@ -6,13 +6,15 @@
         <link rel="stylesheet" href="public/css/main.css">
         <link rel="icon" href="assets/gem.webp">
         <title>Gem Tracker</title>
+
+        <meta name="description" content="track the number of gems that obstacles give you in Clash of Clans.">
     </head>
     <body>
         <div id="app" class="container" v-cloak>
             <h1 class="header">Gem Tracker</h1>
             <div id="init" v-if="sequenceNotSynced === true">
                 <p class="header">Find the number of gems you will get when you destroy a respawning obstacle in Clash of Clans.</p>
-                <h6 class="header">Destroy three respawnable obstacles and consecutively enter the number of gems each obstacle gave you:</h5>
+                <h6 class="header">Destroy three respawnable obstacles and consecutively enter the number of gems each obstacle gave you:</h6>
                 <form class='pure-form'>
                     <div class="row mainForm">
                         <div class="three columns">
